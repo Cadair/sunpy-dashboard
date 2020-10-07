@@ -1,0 +1,15 @@
+[build-system]
+requires = ["flit_core >=2,<4"]
+build-backend = "flit_core.buildapi"
+
+[tool.flit.metadata]
+module="skill_ci_status"
+author="Stuart Mumford"
+author-email="stuart@cadair.com"
+home-page="https://github.com/Cadair/skill-ci-status"
+requires=[
+    "flit_core>=2.2.0",
+    "opsdroid"
+]
+requires-python=">=3.8"
+description-file="README.md"
