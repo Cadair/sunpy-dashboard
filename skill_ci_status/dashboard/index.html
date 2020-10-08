@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cards List - Bulma Templates</title>
+    <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  </head>
+
+  <body>
+
+    <section class="hero is-primary is-bold">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title">
+            SunPy Coordinated Package Dashboard
+          </h1>
+        </div>
+      </div>
+    </section>
+    <div class="container">
+      <div class="section">
+
+        <div id="app" class="row columns is-multiline">
+          <div v-for="card in cardData" key="card.id" class="column is-4">
+            <div class="card large">
+              <div class="card-content">
+                <div class="media">
+                  <div class="media-left">
+                    <figure class="image is-48x48">
+                      <img :src="card.package.logo" alt="Image">
+                    </figure>
+                  </div>
+                  <div class="media-content">
+                    <p class="title is-4 no-padding">{{card.package.name}}</p>
+                  </div>
+                </div>
+                <div class="content">
+                  hello world
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Using Vue to populate cards to reduce redundant code -->
+    <script>
+     let cardsData = [{
+         id: 1,
+         package: {
+             name: 'SunPy',
+             version: 'v2.0.3',
+             logo: 'https://raw.githubusercontent.com/sunpy/sunpy.org/master/_static/img/sunpy_icon.svg'
+         },
+         branches: {
+             'master': {
+                 'build': {
+                     'url': 'https://bbc.co.uk',
+                     'status': 'success'
+                 }
+             }
+         },
+     }]
+
+     var app = new Vue({
+         el: '#app',
+         data: {
+             cardData: cardsData
+         }
+     })
+    </script>
+  </body>
+
+</html>
