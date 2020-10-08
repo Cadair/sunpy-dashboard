@@ -8,6 +8,8 @@
     <title>SunPy Coordinated Package Dashboard</title>
     <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.2.3/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule="" src="https://unpkg.com/ionicons@5.2.3/dist/ionicons/ionicons.js"></script>
   </head>
 
   <body>
@@ -39,14 +41,16 @@
                     <p :title="card.package.last_release" class="subtitle no-padding">{{card.package.version}}</p>
                   </div>
                 </div>
-                <button v-for="(build, branch) in card.branches" class="box" :class="statusBackground(build.build.status)" @click="toggleJob(card.package.name, branch)">
+                <div v-for="(build, branch) in card.branches" class="box" :class="statusBackground(build.build.status)" @click="toggleJob(card.package.name, branch)">
                   <a class="subtitle has-text-weight-bold has-text-black-ter" :href="build.build.url">{{branch}}</a>
                   <content style="display: none;" :id=`${card.package.name}${branch}`>
-                    <ul>
-                      <li v-for="job in build.build.jobs">{{job.name}}</li>
+                    <ul class="pl-5 has-text-weight-bold has-text-black-ter" style="list-style-type: circle;">
+                      <li :class="statusBackground(job.status)" v-for="job in build.build.jobs">
+                        {{job.name}}
+                      </li>
                     </ul>
                   </content>
-                </button>
+                </div>
               </div>
             </div>
           </div>
@@ -140,6 +144,19 @@
                      'has-background-success': status == 'success',
                      'has-background-warning': status == 'out-of-date',
                      'has-background-danger': status == 'faliure',
+                 }
+             },
+             statusText(status) {
+                 return {
+                     'has-text-success': status == 'success',
+                     'has-text-warning': status == 'out-of-date',
+                     'has-text-danger': status == 'faliure',
+                 }
+             },
+             statusIcon(status) {
+                 return {
+                     'ion-checkmark-circle': status == 'success',
+                     'ion-checkmark-circle': status == 'faliure',
                  }
              }
          }
