@@ -1,49 +1,53 @@
-from datetime import datetime
+import json
+from pathlib import Path
 
-from .dashboard import Card, Package, Job, Build, Branch, cards_to_json
+import aiohttp
+
+from .base import Package, get_pypi_version_time
+from .dashboard import Branch, Card, cards_to_json
+from .providers import supported_providers
 
 
-example_cards = [
-    Card(
-        Package(
-            name="sunpy",
-            version="v2.0.3",
-            logo="https://raw.githubusercontent.com/sunpy/sunpy.org/master/_static/img/sunpy_icon.svg"
+async def get_latest_builds(session, active_branches, ci_info):
+    branches = {}
+    for branch in active_branches:
+        builds = []
+        for ci_name, config in ci_info.items():
+            provider = supported_providers[ci_name](session)
+            last_build = await provider.get_last_build(config['org'],
+                                                       config['repo'],
+                                                       branch)
+            if last_build:
+                builds.append(last_build)
+
+        aggregate_status = "failed" if "failed" in [b.status for b in builds] else "succeeded"
+        branches[branch] = Branch(aggregate_status, builds)
+    return branches
+
+
+async def build_cards(session):
+    with open(Path(__file__).parent / "dashboard" / "packages.json") as fobj:
+        packages = json.loads(fobj.read())
+
+    cards = []
+    for package, config in packages.items():
+        version, last_release = await get_pypi_version_time(session, config["pypi_name"])
+        cards.append(Card(
+            Package(
+                name=package,
+                version=version,
+                last_release=last_release,
+                logo=config.get("logo", ""),
             ),
-        {
-            'master': Branch(
-                Build(
-                    url="https://bbc.co.uk",
-                    status="success",
-                    time=datetime(2011, 1, 1, 14, 5, 8),
-                    jobs=[
-                        Job(
-                            "py38",
-                            "faliure"
-                        )
-                    ]
-                )
-            ),
-            '2.0': Branch(
-                Build(
-                    url="https://bbc.co.uk",
-                    status="success",
-                    time=datetime(2011, 1, 1, 14, 5, 8),
-                    jobs=[
-                        Job(
-                            "py38",
-                            "success"
-                        )
-                    ]
-                )
-            )
-        }
+            await get_latest_builds(session, config["active_branches"], config["ci"])
+        )
     )
-]
+    return cards
 
 
 async def get_dashboard(opsdroid):
     """
-    Get the data for the dashboard api response.
+    Get the data for the dashboard API response.
     """
-    return cards_to_json(example_cards)
+    async with aiohttp.ClientSession() as session:
+        return cards_to_json(await build_cards(session))

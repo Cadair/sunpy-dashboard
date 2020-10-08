@@ -26,7 +26,7 @@
       <div class="section">
 
         <div id="app" class="row columns is-multiline">
-          <div v-for="card in cardData" key="card.id" class="column is-3">
+          <div v-for="card in cardData" key="card.id" class="column is-4">
             <div class="card large">
               <div class="card-content">
                 <div class="media">
@@ -40,12 +40,12 @@
                     <p :title="card.package.last_release" class="subtitle no-padding">{{card.package.version}}</p>
                   </div>
                 </div>
-                <div v-for="(build, branch) in card.branches" class="box" :class="statusBackground(build.build.status)" @click="toggleJob(card.package.name, branch)">
-                  <a class="subtitle has-text-weight-bold has-text-black-ter" :href="build.build.url">{{branch}}</a>
+                <div v-for="(build, branch) in card.branches" class="box" :class="statusBackground(build.status)" @click="toggleJob(card.package.name, branch)">
+                  <p class="subtitle has-text-weight-bold has-text-black-ter">{{branch}}</p>
                   <content style="display: none;" :id=`${card.package.name}${branch}`>
-                    <ul class="pl-5 has-text-weight-bold has-text-black-ter" style="list-style-type: circle;">
-                      <li :class="statusBackground(job.status)" v-for="job in build.build.jobs">
-                        {{job.name}}
+                    <ul class="pl-5 has-text-weight-bold has-text-black-ter" style="list-style-type: circle;" v-for="build in build.builds">
+                      <li :class="statusBackground(job.status)" v-for="job in build.jobs">
+                        <a :href="build.url">{{job.name}}</a>
                       </li>
                     </ul>
                   </content>
@@ -78,22 +78,22 @@
              },
              statusBackground(status) {
                  return {
-                     'has-background-success': status == 'success',
+                     'has-background-success': status == 'succeeded',
                      'has-background-warning': status == 'out-of-date',
-                     'has-background-danger': status == 'faliure',
+                     'has-background-danger': status == 'failed',
                  }
              },
              statusText(status) {
                  return {
-                     'has-text-success': status == 'success',
+                     'has-text-success': status == 'succeeded',
                      'has-text-warning': status == 'out-of-date',
-                     'has-text-danger': status == 'faliure',
+                     'has-text-danger': status == 'failed',
                  }
              },
              statusIcon(status) {
                  return {
-                     'ion-checkmark-circle': status == 'success',
-                     'ion-checkmark-circle': status == 'faliure',
+                     'ion-checkmark-circle': status == 'succeeded',
+                     'ion-checkmark-circle': status == 'failed',
                  }
              }
          }

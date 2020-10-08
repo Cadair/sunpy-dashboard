@@ -2,9 +2,10 @@
 Functions for interacting with the Azure Pipelines API.
 """
 from typing import List
+from datetime import datetime
 
-from .base import BaseProvider, BuildReport, JobReport
-
+from ..base import Job, Build
+from .base import BaseProvider
 
 class AzureProvider(BaseProvider):
 
@@ -20,29 +21,33 @@ class AzureProvider(BaseProvider):
                   "branchName": f"refs/heads/{branch}",
                   "$top": 1}
 
-        return (await self.make_request("GET", endpoint, params=params))['value'][0]
+        builds = (await self.make_request("GET", endpoint, params=params))['value']
+        if builds:
+            builds = builds[0]
+        return builds
 
-    async def get_jobs_from_timeline(self, timeline_url: str) -> List[JobReport]:
+    async def get_jobs_from_timeline(self, timeline_url: str) -> List[Job]:
         """
         Parse the timeline and get the jobs (phases) and their statuses.
         """
         records = (await self.make_request("GET", timeline_url,
                                            params={'api-version': "6.0"}))['records']
         phases = filter(lambda records: records['type'] == "Phase", records)
-        return [JobReport(ph['name'], ph['result']) for ph in phases]
+        return [Job(ph['name'], ph['result']) for ph in phases]
 
-    async def get_last_build_report(self,
-                                    org: str,
-                                    project: str,
-                                    branch: str) -> BuildReport:
+    async def get_last_build(self,
+                             org: str,
+                             project: str,
+                             branch: str) -> Build:
         """
         Get a reduced report about the last job,
         including the status of the individual jobs.
         """
         resp = await self.get_last_build_on_branch(org, project, branch)
-        return BuildReport(
-            status=resp['result'],
-            badge=resp['_links']['badge']['href'],
-            build=resp['_links']['web']['href'],
-            jobs=await self.get_jobs_from_timeline(resp['_links']['timeline']['href'])
-        )
+        if resp:
+            return Build(
+                url=resp['_links']['web']['href'],
+                status=resp['result'],
+                time=datetime.fromisoformat(resp['finishTime'].split(".")[0]),
+                jobs=await self.get_jobs_from_timeline(resp['_links']['timeline']['href'])
+            )

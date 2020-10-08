@@ -3,19 +3,7 @@ from typing import List
 
 from pydantic.dataclasses import dataclass
 
-
-@dataclass
-class JobReport:
-    name: str
-    result: str
-
-
-@dataclass
-class BuildReport:
-    status: str
-    badge: str
-    build: str
-    jobs: List[JobReport]
+from ..base import Job, Build
 
 
 class BaseProvider(ABC):
@@ -41,10 +29,10 @@ class BaseProvider(ABC):
             return await resp.json()
 
     @abstractmethod
-    async def get_last_build_report(self,
-                                    org: str,
-                                    repo: str,
-                                    branch: str) -> BuildReport:
+    async def get_last_build(self,
+                             org: str,
+                             repo: str,
+                             branch: str) -> Build:
         """
         Generate a report about the last build
         """

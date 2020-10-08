@@ -1,38 +1,19 @@
 """
-Data models relating to the dashboard
+Data models relating to the dashboard.
 """
 import json
-from datetime import datetime
-from typing import Dict, List, Optional
+from typing import Dict, List
 
 from pydantic.dataclasses import dataclass
 from pydantic.json import pydantic_encoder
 
-
-@dataclass
-class Package():
-    name: str
-    version: str
-    logo: Optional[str] = None
-
-
-@dataclass
-class Job():
-    name: str
-    status: str
-
-
-@dataclass
-class Build():
-    url: str
-    status: str
-    time: datetime
-    jobs: List[Job]
+from .base import Build, Package
 
 
 @dataclass
 class Branch():
-    build: Build
+    status: str
+    builds: List[Build]
 
 
 @dataclass
