@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
-from dataclasses import dataclass
 from typing import List
+
+from pydantic.dataclasses import dataclass
 
 
 @dataclass

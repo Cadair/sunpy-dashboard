@@ -8,8 +8,7 @@
     <title>SunPy Coordinated Package Dashboard</title>
     <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-    <script type="module" src="https://unpkg.com/ionicons@5.2.3/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule="" src="https://unpkg.com/ionicons@5.2.3/dist/ionicons/ionicons.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   </head>
 
   <body>
@@ -60,79 +59,17 @@
 
     <!-- Using Vue to populate cards to reduce redundant code -->
     <script>
-     let cardsData = [
-         {
-             package: {
-                 name: 'sunpy',
-                 version: 'v2.0.3',
-                 last_release: '2020-10-02',
-                 logo: 'https://raw.githubusercontent.com/sunpy/sunpy.org/master/_static/img/sunpy_icon.svg'
-             },
-             branches: {
-                 'master': {
-                     'build': {
-                         'url': 'https://bbc.co.uk',
-                         'status': 'faliure',
-                         'time': '2020-10-06T00:12:15',
-                         'jobs': [
-                             {'name': 'py38-test',
-                              'status': 'faliure'},
-                             {'name': 'py37-test',
-                              'status': 'success'},
-                         ]
-                     },
-                 },
-                 '2.0': {
-                     'build': {
-                         'url': 'https://bbc.co.uk',
-                         'status': 'out-of-date'
-                     }
-                 }
-             },
-         },
-         {
-             package: {
-                 name: 'ndcube',
-                 version: 'v1.3.2',
-                 last_release: '2020-08-02',
-                 logo: 'https://raw.githubusercontent.com/sunpy/ndcube/master/docs/logo/ndcube.png'
-             },
-             branches: {
-                 'master': {
-                     'build': {
-                         'url': 'https://bbc.co.uk',
-                         'status': 'faliure'
-                     },
-                 },
-                 '1.3': {
-                     'build': {
-                         'url': 'https://bbc.co.uk',
-                         'status': 'success'
-                     }
-                 }
-             },
-         },
-         {
-             package: {
-                 name: 'sunkit-image',
-                 version: 'v0.1.0',
-                 last_release: '2020-10-02',
-             },
-             branches: {
-                 'master': {
-                     'build': {
-                         'url': 'https://bbc.co.uk',
-                         'status': 'out-of-date'
-                     },
-                 },
-             },
-         },
-     ]
 
      var app = new Vue({
          el: '#app',
          data: {
-             cardData: cardsData,
+             cardData: [],
+         },
+         mounted() {
+             var self = this
+             $.getJSON("/api/dashboard", function(data) {
+                 self.cardData = data;
+             });
          },
          methods: {
              toggleJob(package, branch) {
