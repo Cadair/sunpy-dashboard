@@ -50,5 +50,17 @@
                 "org": "sunpy"
             }
         }
+    },
+    "drms": {
+        "pypi_name": "drms",
+        "active_branches": ["master"],
+        "ci": {
+        }
+    },
+    "radiospectra": {
+        "pypi_name": "radiospectra",
+        "active_branches": ["master"],
+        "ci": {
+        }
     }
 }

@@ -2,7 +2,7 @@
 Functions for interacting with the Azure Pipelines API.
 """
 from typing import List
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from ..base import Job, Build
 from .base import BaseProvider
@@ -45,9 +45,14 @@ class AzureProvider(BaseProvider):
         """
         resp = await self.get_last_build_on_branch(org, project, branch)
         if resp:
+            status = resp.get('result', 'unknown')
+            last_time = datetime.fromisoformat(resp['finishTime'].split(".")[0])
+            if datetime.now() - last_time > timedelta(hours=32):
+                status = "out-of-date"
             return Build(
+                service_name="Azure Pipelines",
                 url=resp['_links']['web']['href'],
-                status=resp.get('result', 'unknown'),
-                time=datetime.fromisoformat(resp['finishTime'].split(".")[0]),
+                status=status,
+                time=last_time,
                 jobs=await self.get_jobs_from_timeline(resp['_links']['timeline']['href'])
             )

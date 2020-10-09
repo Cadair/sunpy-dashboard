@@ -2,8 +2,9 @@
 Base types for representing data.
 """
 from datetime import datetime
-from typing import List, Optional
+from typing import List, Optional, Literal
 
+from pydantic import HttpUrl
 from pydantic.dataclasses import dataclass
 
 
@@ -25,7 +26,7 @@ class Package():
     name: str
     version: str
     last_release: datetime
-    logo: Optional[str] = None
+    logo: Optional[HttpUrl] = None
 
 
 @dataclass
@@ -42,7 +43,8 @@ class Build():
     """
     A single CI run.
     """
-    url: str
-    status: str
+    service_name: str
+    url: HttpUrl
+    status: Literal["succeeded", "failed", "out-of-date"]
     time: datetime
     jobs: List[Job]

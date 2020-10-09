@@ -2,7 +2,7 @@
 Data models relating to the dashboard.
 """
 import json
-from typing import Dict, List
+from typing import Dict, List, Literal
 
 from pydantic.dataclasses import dataclass
 from pydantic.json import pydantic_encoder
@@ -12,7 +12,7 @@ from .base import Build, Package
 
 @dataclass
 class Branch():
-    status: str
+    status: Literal["succeeded", "failed", "out-of-date", "unknown"]
     builds: List[Build]
 
 

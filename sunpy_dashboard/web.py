@@ -21,6 +21,8 @@ async def get_latest_builds(session, active_branches, ci_info):
                 builds.append(last_build)
 
         aggregate_status = "failed" if "failed" in [b.status for b in builds] else "succeeded"
+        aggregate_status = "out-of-date" if "out-of-date" in [b.status for b in builds] else aggregate_status
+        aggregate_status = "unknown" if not builds else aggregate_status
         branches[branch] = Branch(aggregate_status, builds)
     return branches
 
@@ -37,7 +39,7 @@ async def build_cards(session):
                 name=package,
                 version=version,
                 last_release=last_release,
-                logo=config.get("logo", ""),
+                logo=config.get("logo", None),
             ),
             await get_latest_builds(session, config["active_branches"], config["ci"])
         )
