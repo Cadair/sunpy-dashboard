@@ -35,7 +35,7 @@ class Job():
     Information about a single CI job.
     """
     name: str
-    status: str
+    status: Literal["succeeded", "failed", "skipped"]
 
 
 @dataclass

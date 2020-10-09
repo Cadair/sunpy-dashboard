@@ -51,6 +51,16 @@
             }
         }
     },
+    "sunkit-instruments": {
+        "pypi_name": "sunkit-instruments",
+        "active_branches": ["master"],
+        "ci": {
+            "azure": {
+                "repo": "sunkit-instruments",
+                "org": "sunpy"
+            }
+        }
+    },
     "drms": {
         "pypi_name": "drms",
         "active_branches": ["master"],

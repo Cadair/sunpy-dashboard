@@ -41,13 +41,16 @@
                   </div>
                 </div>
                 <div v-for="(build, branch) in card.branches" class="box" :class="statusBackground(build.status)" @click="toggleJob(card.package.name, branch)">
-                  <p class="subtitle has-text-weight-bold has-text-black-ter">{{branch}}</p>
+                  <p class="subtitle mb-0 has-text-weight-bold has-text-black-ter">{{branch}}</p>
                   <content style="display: none;" :id=`${card.package.name}${branch}`>
-                    <ul class="pl-5 has-text-weight-bold has-text-black-ter" style="list-style-type: circle;" v-for="build in build.builds">
-                      <li :class="statusBackground(job.status)" v-for="job in build.jobs">
-                        <a :href="build.url">{{job.name}}</a>
-                      </li>
-                    </ul>
+                    <div class="mt-2" :title="build.time" v-for="build in build.builds">
+                      <p class="has-text-weight-bold">{{build.service_name}}</p>
+                      <ul class="pl-5 has-text-weight-bold has-text-black-ter" style="list-style-type: circle;">
+                        <li :class="statusBackground(job.status)" v-for="job in build.jobs">
+                          <a :href="build.url">{{job.name}}</a>
+                        </li>
+                      </ul>
+                    </div>
                   </content>
                 </div>
               </div>

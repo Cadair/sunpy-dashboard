@@ -21,7 +21,7 @@ async def serve_dashboard_html(request):
 
 
 async def serve_api_dashboard(opsdroid, request):
-    return Response(body=await get_dashboard(opsdroid))
+    return Response(body=await get_dashboard(opsdroid), headers={"Access-Control-Allow-Origin": "*"})
 
 
 def setup(opsdroid, config):
