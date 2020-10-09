@@ -1,8 +1,8 @@
 import aiohttp
 import pytest
 
-from skill_ci_status.providers.base import JobReport, BuildReport
-from skill_ci_status.providers.azure_pipelines import AzureProvider
+from sunpy_dashboard.providers.base import JobReport, BuildReport
+from sunpy_dashboard.providers.azure_pipelines import AzureProvider
 
 
 @pytest.mark.asyncio

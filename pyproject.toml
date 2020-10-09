@@ -15,6 +15,6 @@ requires=[
 requires-python=">=3.8"
 description-file="README.md"
 
-[tool.flit.entrypoints.opsdroid_skill]
-sunpybot = "skill_ci_dashboard"
+[tool.flit.entrypoints.opsdroid_skills]
+sunpy_dashboard = "sunpy_dashboard"
 

@@ -2,8 +2,8 @@ from datetime import datetime
 
 import pytest
 
-from skill_ci_status.dashboard import Card, Package, Job, Build, Branch, cards_to_json
-from skill_ci_status.web import get_dashboard
+from sunpy_dashboard.dashboard import Card, Package, Job, Build, Branch, cards_to_json
+from sunpy_dashboard.web import get_dashboard
 
 example_cards = [
     Card(
