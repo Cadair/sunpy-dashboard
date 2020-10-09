@@ -47,7 +47,7 @@ class AzureProvider(BaseProvider):
         if resp:
             return Build(
                 url=resp['_links']['web']['href'],
-                status=resp['result'],
+                status=resp.get('result', 'unknown'),
                 time=datetime.fromisoformat(resp['finishTime'].split(".")[0]),
                 jobs=await self.get_jobs_from_timeline(resp['_links']['timeline']['href'])
             )
