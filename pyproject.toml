@@ -10,7 +10,8 @@ home-page="https://github.com/Cadair/skill-sunpy-dashboard"
 requires=[
     "flit_core>=2.2.0",
     "opsdroid",
-    "pydantic"
+    "pydantic",
+    "aiohttp"
 ]
 requires-python=">=3.8"
 description-file="README.md"
