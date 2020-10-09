@@ -3,13 +3,18 @@ requires = ["flit_core >=2,<4"]
 build-backend = "flit_core.buildapi"
 
 [tool.flit.metadata]
-module="skill_ci_status"
+module="sunpy_dashboard"
 author="Stuart Mumford"
 author-email="stuart@cadair.com"
-home-page="https://github.com/Cadair/skill-ci-status"
+home-page="https://github.com/Cadair/skill-sunpy-dashboard"
 requires=[
     "flit_core>=2.2.0",
-    "opsdroid"
+    "opsdroid",
+    "pydantic"
 ]
 requires-python=">=3.8"
 description-file="README.md"
+
+[tool.flit.entrypoints.opsdroid_skill]
+sunpybot = "skill_ci_dashboard"
+
