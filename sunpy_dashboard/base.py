@@ -39,7 +39,7 @@ class Job():
     Information about a single CI job.
     """
     name: str
-    status: Literal["succeeded", "failed", "skipped"]
+    status: Literal["succeeded", "failed", "skipped", "unknown"]
 
 
 @dataclass
@@ -49,7 +49,7 @@ class Build():
     """
     service_name: str
     url: HttpUrl
-    status: Literal["succeeded", "failed", "out-of-date"]
+    status: Literal["succeeded", "failed", "out-of-date", "unknown"]
     time: datetime
     jobs: List[Job]
 

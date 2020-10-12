@@ -21,7 +21,7 @@ async def get_latest_builds(session, active_branches, ci_info):
             if last_build:
                 builds.append(last_build)
 
-        status_ordered = ['out-of-date', 'failed', 'succeeded']
+        status_ordered = ['out-of-date', 'failed', 'succeeded', 'running', 'unknown']
         prioritized_status = [status_ordered.index(b.status) for b in builds]
         aggregate_status = status_ordered[min(prioritized_status)] if prioritized_status else "unknown"
         branches[branch] = Branch(aggregate_status, builds)
