@@ -13,7 +13,7 @@
     "ndcube": {
         "pypi_name": "ndcube",
         "logo": "https://raw.githubusercontent.com/sunpy/ndcube/master/docs/logo/ndcube.png",
-        "active_branches": ["master", "1.3"],
+        "active_branches": ["master", "1.4", "1.3"],
         "ci": {
             "azure": {
                 "repo": "ndcube",
@@ -71,6 +71,16 @@
         "pypi_name": "radiospectra",
         "active_branches": ["master"],
         "ci": {
+        }
+    },
+    "ablog": {
+        "pypi_name": "ablog",
+        "active_branches": ["master"],
+        "ci": {
+            "azure": {
+                "repo": "ablog",
+                "org": "org"
+            }
         }
     }
 }

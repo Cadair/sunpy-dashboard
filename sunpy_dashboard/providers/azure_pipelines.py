@@ -2,10 +2,13 @@
 Functions for interacting with the Azure Pipelines API.
 """
 from typing import List
+from logging import getLogger
 from datetime import datetime, timedelta
 
 from ..base import Job, Build
 from .base import BaseProvider
+
+log = getLogger(__name__)
 
 class AzureProvider(BaseProvider):
 
@@ -21,7 +24,13 @@ class AzureProvider(BaseProvider):
                   "branchName": f"refs/heads/{branch}",
                   "$top": 1}
 
-        builds = (await self.make_request("GET", endpoint, params=params))['value']
+        builds = None
+        try:
+            builds = (await self.make_request("GET", endpoint, params=params))['value']
+        except Exception:
+            log.exception(f"Unable to fetch last pipelines build for {org}/{project}")
+            pass
+        # The API request should return one, and this method has to return one result
         if builds:
             builds = builds[0]
         return builds
@@ -33,7 +42,9 @@ class AzureProvider(BaseProvider):
         records = (await self.make_request("GET", timeline_url,
                                            params={'api-version': "6.0"}))['records']
         phases = filter(lambda records: records['type'] == "Phase", records)
-        return [Job(ph['name'], ph['result']) for ph in phases]
+        # none is not allowed but is returned when a build is running
+        result = "unknown" if ph['result'] is "none" else ph['result']
+        return [Job(ph['name'], result) for ph in phases]
 
     async def get_last_build(self,
                              org: str,

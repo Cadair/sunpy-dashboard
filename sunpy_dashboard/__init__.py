@@ -6,6 +6,7 @@ __version__ = "0.0.1.dev"
 
 from pathlib import Path
 from functools import partial
+from logging import getLogger
 
 from aiohttp.web import FileResponse, Response
 
@@ -14,6 +15,8 @@ from .web import get_dashboard
 from opsdroid.skill import Skill
 from opsdroid.matchers import match_event
 from opsdroid.events import OpsdroidStarted
+
+log = getLogger(__name__)
 
 
 async def serve_dashboard_html(request):
