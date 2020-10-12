@@ -1,6 +1,7 @@
 {
     "sunpy": {
         "pypi_name": "sunpy",
+        "repo": "sunpy/sunpy",
         "logo": "https://raw.githubusercontent.com/sunpy/sunpy.org/master/_static/img/sunpy_icon.svg",
         "active_branches": ["master", "2.0"],
         "ci": {
@@ -12,6 +13,7 @@
     },
     "ndcube": {
         "pypi_name": "ndcube",
+        "repo": "sunpy/ndcube",
         "logo": "https://raw.githubusercontent.com/sunpy/ndcube/master/docs/logo/ndcube.png",
         "active_branches": ["master", "1.4", "1.3"],
         "ci": {
@@ -23,6 +25,7 @@
     },
     "sunkit-image": {
         "pypi_name": "sunkit-image",
+        "repo": "sunpy/sunkit-image",
         "active_branches": ["master"],
         "ci": {
             "azure": {
@@ -33,6 +36,7 @@
     },
     "sunraster": {
         "pypi_name": "sunraster",
+        "repo": "sunpy/sunraster",
         "active_branches": ["master"],
         "ci": {
             "azure": {
@@ -43,6 +47,7 @@
     },
     "pyflct": {
         "pypi_name": "pyflct",
+        "repo": "sunpy/pyflct",
         "active_branches": ["master"],
         "ci": {
             "azure": {
@@ -53,6 +58,7 @@
     },
     "sunkit-instruments": {
         "pypi_name": "sunkit-instruments",
+        "repo": "sunpy/sunkit-instruments",
         "active_branches": ["master"],
         "ci": {
             "azure": {
@@ -63,18 +69,21 @@
     },
     "drms": {
         "pypi_name": "drms",
+        "repo": "sunpy/drms",
         "active_branches": ["master"],
         "ci": {
         }
     },
     "radiospectra": {
         "pypi_name": "radiospectra",
+        "repo": "sunpy/radiospectra",
         "active_branches": ["master"],
         "ci": {
         }
     },
     "ablog": {
         "pypi_name": "ablog",
+        "repo": "sunpy/ablog",
         "active_branches": ["master"],
         "ci": {
             "azure": {

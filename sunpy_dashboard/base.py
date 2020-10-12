@@ -30,6 +30,7 @@ class Package():
     version: str
     last_release: datetime
     active_branches: List[str]
+    repourl: HttpUrl
     logo: Optional[HttpUrl] = None
 
 

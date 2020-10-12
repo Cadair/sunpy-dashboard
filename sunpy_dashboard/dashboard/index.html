@@ -36,7 +36,7 @@
                     </figure>
                   </div>
                   <div class="media-content">
-                    <p class="title no-padding">{{card.package.name}}</p>
+                    <p class="title no-padding"><a class="has-text-grey-darker" :href="card.package.repourl">{{card.package.name}}</a></p>
                     <p :title="card.package.last_release" class="subtitle no-padding">{{card.package.version}}</p>
                   </div>
                 </div>

@@ -49,6 +49,7 @@ async def build_packages(session, config) -> List[Package]:
                 name=package,
                 version=version,
                 last_release=last_release,
+                repourl=f"https://github.com/{pconfig['repo']}",
                 logo=pconfig.get("logo", None),
                 active_branches=pconfig["active_branches"],
             )
