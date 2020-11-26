@@ -45,7 +45,8 @@ class AzureProvider(BaseProvider):
         phases = filter(lambda records: records['type'] == "Phase", records)
         # none is not allowed but is returned when a build is running
         return [Job(ph['name'],
-                    "unknown" if not ph['result'] else ph['result']) for ph in phases]
+                    "unknown" if not ph['result'] or ph['result'] in ("unknown",) else ph['result'])
+                for ph in phases]
 
     async def get_last_build(self,
                              org: str,
