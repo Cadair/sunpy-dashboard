@@ -44,8 +44,8 @@ class AzureProvider(BaseProvider):
                                            params={'api-version': "6.0"}))['records']
         phases = filter(lambda records: records['type'] == "Phase", records)
         # none is not allowed but is returned when a build is running
-        status = ph['result'] if ph['result'] in ("succeeded", "failed", "skipped", "unknown") else "unknown"
-        return [Job(ph['name'], status) for ph in phases]
+        status = lambda ph: ph['result'] if ph['result'] in ("succeeded", "failed", "skipped", "unknown") else "unknown"
+        return [Job(ph['name'], status(ph)) for ph in phases]
 
     async def get_last_build(self,
                              org: str,
