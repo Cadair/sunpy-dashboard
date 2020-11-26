@@ -76,6 +76,7 @@
                 "repo": "drms",
                 "org": "sunpy"
             }
+        }
     },
     "radiospectra": {
         "pypi_name": "radiospectra",
@@ -86,6 +87,7 @@
                 "repo": "radiospectra",
                 "org": "sunpy"
             }
+        }
     },
     "ablog": {
         "pypi_name": "ablog",
