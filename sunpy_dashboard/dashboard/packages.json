@@ -72,14 +72,20 @@
         "repo": "sunpy/drms",
         "active_branches": ["master"],
         "ci": {
-        }
+            "azure": {
+                "repo": "drms",
+                "org": "sunpy"
+            }
     },
     "radiospectra": {
         "pypi_name": "radiospectra",
         "repo": "sunpy/radiospectra",
         "active_branches": ["master"],
         "ci": {
-        }
+            "azure": {
+                "repo": "radiospectra",
+                "org": "sunpy"
+            }
     },
     "ablog": {
         "pypi_name": "ablog",

@@ -31,5 +31,6 @@ async def serve_api_dashboard(opsdroid, request):
 def setup(opsdroid, config):
     app = opsdroid.web_server.web_app
 
+    app.router.add_get('/', serve_dashboard_html)
     app.router.add_get('/dashboard', serve_dashboard_html)
     app.router.add_get('/api/dashboard', partial(serve_api_dashboard, opsdroid))
