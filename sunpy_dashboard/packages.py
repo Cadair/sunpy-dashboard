@@ -12,6 +12,12 @@ async def get_latest_builds(session, active_branches, ci_info):
     """
     branches = {}
     for branch in active_branches:
+        branches[branch] = await get_latest_build_for_branch(session, branch, ci_info)
+    return branches
+
+
+# TODO: break out this ci_info thing whatever it is so we can call for other API endpoints
+async def get_latest_build_for_branch(session, branch, ci_info):
         builds = []
         for ci_name, config in ci_info.items():
             provider = supported_providers[ci_name](session)
@@ -23,8 +29,7 @@ async def get_latest_builds(session, active_branches, ci_info):
         status_ordered = ['out-of-date', 'failed', 'succeeded', 'running', 'unknown']
         prioritized_status = [status_ordered.index(b.status) for b in builds]
         aggregate_status = status_ordered[min(prioritized_status)] if prioritized_status else "unknown"
-        branches[branch] = Branch(aggregate_status, builds)
-    return branches
+        return Branch(aggregate_status, builds)
 
 
 def get_packages_config():

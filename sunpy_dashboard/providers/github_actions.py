@@ -83,6 +83,7 @@ class GitHubProvider(BaseProvider):
             if datetime.now() - last_time > timedelta(hours=32):
                 status = "out-of-date"
             return Build(
+                id=resp["id"],
                 service_name="GitHub Actions",
                 url=resp["html_url"],
                 status=status,

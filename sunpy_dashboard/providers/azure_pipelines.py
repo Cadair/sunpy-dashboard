@@ -63,6 +63,7 @@ class AzureProvider(BaseProvider):
             if datetime.now() - last_time > timedelta(hours=32):
                 status = "out-of-date"
             return Build(
+                id=resp["id"],
                 service_name="Azure Pipelines",
                 url=resp['_links']['web']['href'],
                 status=status,

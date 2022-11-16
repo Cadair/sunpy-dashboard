@@ -48,11 +48,12 @@ class Build():
     """
     A single CI run.
     """
+    id: str
     service_name: str
     url: HttpUrl
     status: Literal["succeeded", "failed", "out-of-date", "unknown"]
     time: datetime
-    jobs: List[Job]
+    jobs: List[Job] = None
 
 
 @dataclass
