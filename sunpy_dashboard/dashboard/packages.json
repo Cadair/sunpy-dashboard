@@ -58,10 +58,6 @@
         "repo": "sunpy/sunkit-pyvista",
         "active_branches": ["main"],
         "ci": {
-            "azure": {
-                "project": "sunkit-pyvista",
-                "org": "sunpy"
-            },
             "github": {
                 "repo": "sunkit-pyvista",
                 "org": "sunpy",

@@ -1,6 +1,7 @@
 """
 Functions for interacting with the GitHub Actions API.
 """
+import os
 from typing import List
 from logging import getLogger
 from datetime import datetime, timedelta
@@ -23,6 +24,19 @@ def map_status(job):
 
 
 class GitHubProvider(BaseProvider):
+    async def make_request(self, method: str,
+                           endpoint: str,
+                           *,
+                           params=None,
+                           data=None,
+                           **kwargs):
+        headers = {}
+        if "GITHUB_PERSONAL_ACCESS_TOKEN" in os.environ:
+            headers = {
+                "Authorization": f"token {os.environ['GITHUB_PERSONAL_ACCESS_TOKEN']}"
+            }
+        return await super().make_request(method, endpoint, params=params, data=data, headers=headers)
+
     async def get_last_build_on_branch(
             self, org: str, project: str, branch: str, workflow_name: str
     ) -> dict:
@@ -38,6 +52,7 @@ class GitHubProvider(BaseProvider):
             builds = builds["workflow_runs"]
         except Exception:
             log.exception(f"Unable to fetch last pipelines build for {org}/{project}")
+            log.error(builds)
             pass
         if builds:
             if workflow_name:
