@@ -15,9 +15,8 @@ async def get_latest_builds(session, active_branches, ci_info):
         builds = []
         for ci_name, config in ci_info.items():
             provider = supported_providers[ci_name](session)
-            last_build = await provider.get_last_build(config['org'],
-                                                       config['repo'],
-                                                       branch)
+            config.update({"branch": branch})
+            last_build = await provider.get_last_build(**config)
             if last_build:
                 builds.append(last_build)
 

@@ -18,14 +18,16 @@ class BaseProvider(ABC):
                            endpoint: str,
                            *,
                            params=None,
-                           data=None):
+                           data=None,
+                           **kwargs):
         """
         Make a request with aiohttp, return json content.
         """
         async with self.session.request(method,
                                         endpoint,
                                         params=params,
-                                        data=data) as resp:
+                                        data=data,
+                                        **kwargs) as resp:
             return await resp.json()
 
     @abstractmethod

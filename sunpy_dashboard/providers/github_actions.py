@@ -24,7 +24,7 @@ def map_status(job):
 
 class GitHubProvider(BaseProvider):
     async def get_last_build_on_branch(
-        self, org: str, project: str, branch: str
+            self, org: str, project: str, branch: str, workflow_name: str
     ) -> dict:
         """
         Request the last build on a given branch, return the json.
@@ -34,16 +34,18 @@ class GitHubProvider(BaseProvider):
 
         builds = None
         try:
-            builds = (await self.make_request("GET", endpoint, params=params))[
-                "workflow_runs"
-            ]
+            builds = await self.make_request("GET", endpoint, params=params)
+            builds = builds["workflow_runs"]
         except Exception:
             log.exception(f"Unable to fetch last pipelines build for {org}/{project}")
             pass
-        # The API request should return one, and this method has to return one result
         if builds:
-            builds = builds[0]
-        return builds
+            if workflow_name:
+                for build in builds:
+                    if build["name"] == workflow_name:
+                        return build
+                log.exception("Could not find a workflow named CI")
+            return builds[0]
 
     async def get_workflow_jobs(self, jobs_url: str) -> List[Job]:
         """
@@ -53,12 +55,12 @@ class GitHubProvider(BaseProvider):
         # none is not allowed but is returned when a build is running
         return [Job(j["name"], map_status(j)) for j in jobs]
 
-    async def get_last_build(self, org: str, project: str, branch: str) -> Build:
+    async def get_last_build(self, org: str, repo: str, branch: str, workflow_name: str = None) -> Build:
         """
         Get a reduced report about the last job,
         including the status of the individual jobs.
         """
-        resp = await self.get_last_build_on_branch(org, project, branch)
+        resp = await self.get_last_build_on_branch(org, repo, branch, workflow_name)
         if resp:
             status = map_status(resp)
             status = status if status not in ("abandoned",) else "unknown"

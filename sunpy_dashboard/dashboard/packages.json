@@ -5,13 +5,10 @@
         "logo": "https://raw.githubusercontent.com/sunpy/sunpy.org/main/_static/img/sunpy_icon.svg",
         "active_branches": ["main", "4.0", "4.1"],
         "ci": {
-            "azure": {
-                "repo": "sunpy",
-                "org": "sunpy"
-            },
             "github": {
                 "repo": "sunpy",
-                "org": "sunpy"
+                "org": "sunpy",
+                "workflow_name": "CI"
             }
         }
     },
@@ -21,13 +18,10 @@
         "logo": "https://raw.githubusercontent.com/sunpy/ndcube/main/docs/logo/ndcube.png",
         "active_branches": ["main", "2.0"],
         "ci": {
-            "azure": {
-                "repo": "ndcube",
-                "org": "sunpy"
-            },
             "github": {
                 "repo": "ndcube",
-                "org": "sunpy"
+                "org": "sunpy",
+                "workflow_name": "CI"
             }
         }
     },
@@ -36,43 +30,10 @@
         "repo": "sunpy/sunkit-image",
         "active_branches": ["main"],
         "ci": {
-            "azure": {
-                "repo": "sunkit-image",
-                "org": "sunpy"
-            },
             "github": {
                 "repo": "sunkit-image",
-                "org": "sunpy"
-            }
-        }
-    },
-    "sunraster": {
-        "pypi_name": "sunraster",
-        "repo": "sunpy/sunraster",
-        "active_branches": ["main"],
-        "ci": {
-            "azure": {
-                "repo": "sunraster",
-                "org": "sunpy"
-            },
-            "github": {
-                "repo": "sunraster",
-                "org": "sunpy"
-            }
-        }
-    },
-    "pyflct": {
-        "pypi_name": "pyflct",
-        "repo": "sunpy/pyflct",
-        "active_branches": ["main"],
-        "ci": {
-            "azure": {
-                "repo": "pyflct",
-                "org": "sunpy"
-            },
-            "github": {
-                "repo": "pyflct",
-                "org": "sunpy"
+                "org": "sunpy",
+                "workflow_name": "CI"
             }
         }
     },
@@ -82,12 +43,77 @@
         "active_branches": ["main"],
         "ci": {
             "azure": {
-                "repo": "sunkit-instruments",
+                "project": "sunkit-instruments",
                 "org": "sunpy"
             },
             "github": {
                 "repo": "sunkit-instruments",
+                "org": "sunpy",
+                "workflow_name": "CI"
+            }
+        }
+    },
+    "sunkit-pyvista": {
+        "pypi_name": "sunkit-pyvista",
+        "repo": "sunpy/sunkit-pyvista",
+        "active_branches": ["main"],
+        "ci": {
+            "azure": {
+                "project": "sunkit-pyvista",
                 "org": "sunpy"
+            },
+            "github": {
+                "repo": "sunkit-pyvista",
+                "org": "sunpy",
+                "workflow_name": "CI"
+            }
+        }
+    },
+    "sunraster": {
+        "pypi_name": "sunraster",
+        "repo": "sunpy/sunraster",
+        "active_branches": ["main"],
+        "ci": {
+            "azure": {
+                "project": "sunraster",
+                "org": "sunpy"
+            },
+            "github": {
+                "repo": "sunraster",
+                "org": "sunpy",
+                "workflow_name": "CI"
+            }
+        }
+    },
+    "pyflct": {
+        "pypi_name": "pyflct",
+        "repo": "sunpy/pyflct",
+        "active_branches": ["main"],
+        "ci": {
+            "azure": {
+                "project": "pyflct",
+                "org": "sunpy"
+            },
+            "github": {
+                "repo": "pyflct",
+                "org": "sunpy",
+                "workflow_name": "CI"
+            }
+        }
+    },
+    "sunkit-instruments": {
+        "pypi_name": "sunkit-instruments",
+        "repo": "sunpy/sunkit-instruments",
+        "active_branches": ["main"],
+        "ci": {
+            "azure": {
+                "project": "sunkit-instruments",
+                "org": "sunpy"
+            },
+            "github": {
+                "repo": "sunkit-instruments",
+                "org": "sunpy",
+                "workflow_name": "CI"
             }
         }
     },
@@ -97,12 +123,13 @@
         "active_branches": ["main"],
         "ci": {
             "azure": {
-                "repo": "drms",
+                "project": "drms",
                 "org": "sunpy"
             },
             "github": {
                 "repo": "drms",
-                "org": "sunpy"
+                "org": "sunpy",
+                "workflow_name": "CI"
             }
         }
     },
@@ -112,12 +139,13 @@
         "active_branches": ["main"],
         "ci": {
             "azure": {
-                "repo": "radiospectra",
+                "project": "radiospectra",
                 "org": "sunpy"
             },
             "github": {
                 "repo": "radiospectra",
-                "org": "sunpy"
+                "org": "sunpy",
+                "workflow_name": "CI"
             }
         }
     },
@@ -127,12 +155,13 @@
         "active_branches": ["main", "0.10"],
         "ci": {
             "azure": {
-                "repo": "ablog",
+                "project": "ablog",
                 "org": "sunpy"
             },
             "github": {
                 "repo": "ablog",
-                "org": "sunpy"
+                "org": "sunpy",
+                "workflow_name": "CI"
             }
         }
     }
