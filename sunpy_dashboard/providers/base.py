@@ -36,12 +36,3 @@ class BaseProvider(ABC):
         """
         Generate a report about the last build
         """
-
-    @abstractmethod
-    async def get_last_build_on_branch(self,
-                                       org: str,
-                                       repo: str,
-                                       branch: str) -> dict:
-        """
-        Get the full json of the last build on the given branch.
-        """
