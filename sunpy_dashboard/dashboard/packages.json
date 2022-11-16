@@ -2,10 +2,14 @@
     "sunpy": {
         "pypi_name": "sunpy",
         "repo": "sunpy/sunpy",
-        "logo": "https://raw.githubusercontent.com/sunpy/sunpy.org/master/_static/img/sunpy_icon.svg",
-        "active_branches": ["master", "2.0"],
+        "logo": "https://raw.githubusercontent.com/sunpy/sunpy.org/main/_static/img/sunpy_icon.svg",
+        "active_branches": ["main", "4.0", "4.1"],
         "ci": {
             "azure": {
+                "repo": "sunpy",
+                "org": "sunpy"
+            },
+            "github": {
                 "repo": "sunpy",
                 "org": "sunpy"
             }
@@ -14,10 +18,14 @@
     "ndcube": {
         "pypi_name": "ndcube",
         "repo": "sunpy/ndcube",
-        "logo": "https://raw.githubusercontent.com/sunpy/ndcube/master/docs/logo/ndcube.png",
-        "active_branches": ["master", "1.4", "1.3"],
+        "logo": "https://raw.githubusercontent.com/sunpy/ndcube/main/docs/logo/ndcube.png",
+        "active_branches": ["main", "2.0"],
         "ci": {
             "azure": {
+                "repo": "ndcube",
+                "org": "sunpy"
+            },
+            "github": {
                 "repo": "ndcube",
                 "org": "sunpy"
             }
@@ -26,9 +34,13 @@
     "sunkit-image": {
         "pypi_name": "sunkit-image",
         "repo": "sunpy/sunkit-image",
-        "active_branches": ["master"],
+        "active_branches": ["main"],
         "ci": {
             "azure": {
+                "repo": "sunkit-image",
+                "org": "sunpy"
+            },
+            "github": {
                 "repo": "sunkit-image",
                 "org": "sunpy"
             }
@@ -37,9 +49,13 @@
     "sunraster": {
         "pypi_name": "sunraster",
         "repo": "sunpy/sunraster",
-        "active_branches": ["master"],
+        "active_branches": ["main"],
         "ci": {
             "azure": {
+                "repo": "sunraster",
+                "org": "sunpy"
+            },
+            "github": {
                 "repo": "sunraster",
                 "org": "sunpy"
             }
@@ -48,9 +64,13 @@
     "pyflct": {
         "pypi_name": "pyflct",
         "repo": "sunpy/pyflct",
-        "active_branches": ["master"],
+        "active_branches": ["main"],
         "ci": {
             "azure": {
+                "repo": "pyflct",
+                "org": "sunpy"
+            },
+            "github": {
                 "repo": "pyflct",
                 "org": "sunpy"
             }
@@ -59,9 +79,13 @@
     "sunkit-instruments": {
         "pypi_name": "sunkit-instruments",
         "repo": "sunpy/sunkit-instruments",
-        "active_branches": ["master"],
+        "active_branches": ["main"],
         "ci": {
             "azure": {
+                "repo": "sunkit-instruments",
+                "org": "sunpy"
+            },
+            "github": {
                 "repo": "sunkit-instruments",
                 "org": "sunpy"
             }
@@ -70,9 +94,13 @@
     "drms": {
         "pypi_name": "drms",
         "repo": "sunpy/drms",
-        "active_branches": ["master"],
+        "active_branches": ["main"],
         "ci": {
             "azure": {
+                "repo": "drms",
+                "org": "sunpy"
+            },
+            "github": {
                 "repo": "drms",
                 "org": "sunpy"
             }
@@ -81,9 +109,13 @@
     "radiospectra": {
         "pypi_name": "radiospectra",
         "repo": "sunpy/radiospectra",
-        "active_branches": ["master"],
+        "active_branches": ["main"],
         "ci": {
             "azure": {
+                "repo": "radiospectra",
+                "org": "sunpy"
+            },
+            "github": {
                 "repo": "radiospectra",
                 "org": "sunpy"
             }
@@ -92,9 +124,13 @@
     "ablog": {
         "pypi_name": "ablog",
         "repo": "sunpy/ablog",
-        "active_branches": ["master"],
+        "active_branches": ["main", "0.10"],
         "ci": {
             "azure": {
+                "repo": "ablog",
+                "org": "sunpy"
+            },
+            "github": {
                 "repo": "ablog",
                 "org": "sunpy"
             }
