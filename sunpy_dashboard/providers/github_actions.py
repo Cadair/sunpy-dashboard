@@ -80,7 +80,7 @@ class GitHubProvider(BaseProvider):
             status = map_status(resp)
             status = status if status not in ("abandoned",) else "unknown"
             last_time = datetime.fromisoformat(resp["run_started_at"].split(":")[0])
-            if datetime.now() - last_time > timedelta(hours=32):
+            if datetime.now() - last_time > timedelta(hours=168):
                 status = "out-of-date"
             return Build(
                 id=resp["id"],
