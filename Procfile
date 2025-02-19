@@ -1,0 +1,1 @@
+web: python -m fastapi run sunpy_dashboard/main.py
