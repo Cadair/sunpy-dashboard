@@ -1,7 +1,6 @@
-A CI status checker opsdroid skill
-==================================
+A CI status dashboard for sunpy
+================================
 
-This skill is designed to pull in the last CI build on any configured branch
-and report it both to chat and as a dashboard.
+This repo uses fastapi to generate a simple dashboard showing the CI status for all the sunpy repos.
 
-In it's first iteration it will only support Azure Pipelines
+To run it you will almost certainly need to set the `GITHUB_PERSONAL_ACCESS_TOKEN` variable, then do `fastapi dev sunpy_dashboard/main.py`.

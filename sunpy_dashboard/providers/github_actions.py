@@ -59,7 +59,7 @@ class GitHubProvider(BaseProvider):
                 for build in builds:
                     if build["name"] == workflow_name:
                         return build
-                log.exception("Could not find a workflow named CI")
+                log.exception(f"Could not find a workflow named {workflow_name} on {org}/{project}")
             return builds[0]
 
     async def get_workflow_jobs(self, jobs_url: str) -> List[Job]:

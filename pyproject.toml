@@ -6,16 +6,11 @@ build-backend = "flit_core.buildapi"
 module="sunpy_dashboard"
 author="Stuart Mumford"
 author-email="stuart@cadair.com"
-home-page="https://github.com/Cadair/skill-sunpy-dashboard"
+home-page="https://github.com/Cadair/sunpy-dashboard"
 requires=[
     "flit_core>=2.2.0",
-    "opsdroid",
     "pydantic",
-    "aiohttp"
+	"fastapi",
 ]
-requires-python=">=3.8"
+requires-python=">=3.12"
 description-file="README.md"
-
-[tool.flit.entrypoints.opsdroid_skills]
-sunpy_dashboard = "sunpy_dashboard"
-

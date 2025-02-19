@@ -3,7 +3,7 @@
         "pypi_name": "sunpy",
         "repo": "sunpy/sunpy",
         "logo": "https://raw.githubusercontent.com/sunpy/sunpy.org/main/_static/img/sunpy_icon.svg",
-        "active_branches": ["main", "4.0", "4.1"],
+        "active_branches": ["main", "6.0", "6.1"],
         "ci": {
             "github": {
                 "repo": "sunpy",
@@ -16,7 +16,7 @@
         "pypi_name": "ndcube",
         "repo": "sunpy/ndcube",
         "logo": "https://raw.githubusercontent.com/sunpy/ndcube/main/docs/logo/ndcube.png",
-        "active_branches": ["main", "2.0"],
+        "active_branches": ["main", "2.3"],
         "ci": {
             "github": {
                 "repo": "ndcube",
@@ -42,10 +42,6 @@
         "repo": "sunpy/sunkit-instruments",
         "active_branches": ["main"],
         "ci": {
-            "azure": {
-                "project": "sunkit-instruments",
-                "org": "sunpy"
-            },
             "github": {
                 "repo": "sunkit-instruments",
                 "org": "sunpy",
@@ -70,10 +66,6 @@
         "repo": "sunpy/sunraster",
         "active_branches": ["main"],
         "ci": {
-            "azure": {
-                "project": "sunraster",
-                "org": "sunpy"
-            },
             "github": {
                 "repo": "sunraster",
                 "org": "sunpy",
@@ -86,10 +78,6 @@
         "repo": "sunpy/pyflct",
         "active_branches": ["main"],
         "ci": {
-            "azure": {
-                "project": "pyflct",
-                "org": "sunpy"
-            },
             "github": {
                 "repo": "pyflct",
                 "org": "sunpy",
@@ -102,10 +90,6 @@
         "repo": "sunpy/sunkit-instruments",
         "active_branches": ["main"],
         "ci": {
-            "azure": {
-                "project": "sunkit-instruments",
-                "org": "sunpy"
-            },
             "github": {
                 "repo": "sunkit-instruments",
                 "org": "sunpy",
@@ -118,10 +102,6 @@
         "repo": "sunpy/drms",
         "active_branches": ["main"],
         "ci": {
-            "azure": {
-                "project": "drms",
-                "org": "sunpy"
-            },
             "github": {
                 "repo": "drms",
                 "org": "sunpy",
@@ -134,12 +114,80 @@
         "repo": "sunpy/radiospectra",
         "active_branches": ["main"],
         "ci": {
-            "azure": {
-                "project": "radiospectra",
-                "org": "sunpy"
-            },
             "github": {
                 "repo": "radiospectra",
+                "org": "sunpy",
+                "workflow_name": "CI"
+            }
+        }
+    },
+    "sunkit-spex": {
+        "pypi_name": "sunpy",
+        "repo": "sunpy/sunkit-spex",
+        "active_branches": ["main"],
+        "ci": {
+            "github": {
+                "repo": "sunkit-spex",
+                "org": "sunpy",
+                "workflow_name": "CI"
+            }
+        }
+    },
+    "sunpy-soar": {
+        "pypi_name": "sunpy-soar",
+        "repo": "sunpy/sunpy-soar",
+        "active_branches": ["main"],
+        "ci": {
+            "github": {
+                "repo": "sunpy-soar",
+                "org": "sunpy",
+                "workflow_name": "CI"
+            }
+        }
+    },
+    "mpl-animators": {
+        "pypi_name": "mpl-animators",
+        "repo": "sunpy/mpl-animators",
+        "active_branches": ["main"],
+        "ci": {
+            "github": {
+                "repo": "mpl-animators",
+                "org": "sunpy",
+                "workflow_name": "CI"
+            }
+        }
+    },
+    "sunkit-dem": {
+        "pypi_name": "sunkit-dem",
+        "repo": "sunpy/sunkit-dem",
+        "active_branches": ["main"],
+        "ci": {
+            "github": {
+                "repo": "sunkit-dem",
+                "org": "sunpy",
+                "workflow_name": "CI"
+            }
+        }
+    },
+    "streamtracer": {
+        "pypi_name": "streamtracer",
+        "repo": "sunpy/streamtracer",
+        "active_branches": ["main"],
+        "ci": {
+            "github": {
+                "repo": "streamtracer",
+                "org": "sunpy",
+                "workflow_name": "CI"
+            }
+        }
+    },
+    "sunkit-magex": {
+        "pypi_name": "sunkit-magex",
+        "repo": "sunpy/sunkit-magex",
+        "active_branches": ["main"],
+        "ci": {
+            "github": {
+                "repo": "sunkit-magex",
                 "org": "sunpy",
                 "workflow_name": "CI"
             }
@@ -148,12 +196,8 @@
     "ablog": {
         "pypi_name": "ablog",
         "repo": "sunpy/ablog",
-        "active_branches": ["main", "0.10"],
+        "active_branches": ["main"],
         "ci": {
-            "azure": {
-                "project": "ablog",
-                "org": "sunpy"
-            },
             "github": {
                 "repo": "ablog",
                 "org": "sunpy",

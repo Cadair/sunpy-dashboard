@@ -14,11 +14,14 @@ async def get_pypi_version_time(session, name):
     """
     url = f"https://pypi.org/pypi/{name}/json"
 
-    async with session.get(url) as resp:
-        info = (await resp.json())
-    version = info["info"]["version"]
-    time = datetime.fromisoformat(info["releases"][version][0]["upload_time"])
-    return version, time
+    try:
+        async with session.get(url) as resp:
+            info = (await resp.json())
+        version = info["info"]["version"]
+        time = datetime.fromisoformat(info["releases"][version][0]["upload_time"])
+        return version, time
+    except Exception:
+        return "", datetime.now()
 
 
 @dataclass
@@ -48,7 +51,7 @@ class Build():
     """
     A single CI run.
     """
-    id: str
+    id: str | int
     service_name: str
     url: HttpUrl
     status: Literal["succeeded", "failed", "out-of-date", "unknown"]
