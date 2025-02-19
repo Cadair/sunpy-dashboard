@@ -70,7 +70,7 @@ async def build_packages(session, config) -> List[Package]:
     for package, pconfig in config.items():
         version, last_release = await get_pypi_version_time(session,
                                                             pconfig["pypi_name"])
-        packages.append(get_package_by_name(package))
+        packages.append(await get_package_by_name(session, package))
     return packages
 
 
