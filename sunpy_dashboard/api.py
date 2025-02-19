@@ -1,12 +1,16 @@
 import json
+from typing import Annotated
 
 import aiohttp
+
+from fastapi import Path
 
 from pydantic.json import pydantic_encoder
 
 from sunpy_dashboard.packages import (
     build_packages,
-    #get_latest_build_for_branch,
+    get_package_by_name,
+    get_builds_for_package,
     get_packages_config,
     build_cards,
 )
@@ -39,10 +43,9 @@ async def get_packages():
 
 
 @app.get("/api/latest_build/{package}/{branch}")
-async def get_latest_build(request):
-    pass
-
-
-@app.get("/api/jobs/{package}/{branch}/{job_id}")
-async def get_jobs(request):
-    pass
+async def get_latest_build(package: Annotated[str, Path(title="package name")],
+                           branch: Annotated[str, Path(title="branch name")]):
+    async with aiohttp.ClientSession() as session:
+        package = await get_package_by_name(session, package)
+        builds = await get_builds_for_package(session, package)
+        return builds[branch]
