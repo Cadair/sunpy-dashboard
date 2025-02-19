@@ -1,1 +1,1 @@
-web: python -m fastapi run sunpy_dashboard/main.py
+web: python -m fastapi run --port 5000 sunpy_dashboard/main.py
