@@ -3,7 +3,7 @@ from typing import List
 from pathlib import Path
 from functools import cache
 
-from .base import Package, get_pypi_version_time, Build, Branch, Card
+from .base import Package, get_pypi_version_time, Branch, Card
 from .providers import supported_providers
 
 
