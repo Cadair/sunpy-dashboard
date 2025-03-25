@@ -28,6 +28,7 @@
     "sunkit-image": {
         "pypi_name": "sunkit-image",
         "repo": "sunpy/sunkit-image",
+        "logo": "https://raw.githubusercontent.com/sunpy/sunpy.org/main/_static/img/sunpy_icon.svg",
         "active_branches": ["main"],
         "ci": {
             "github": {
@@ -40,6 +41,7 @@
     "sunkit-instruments": {
         "pypi_name": "sunkit-instruments",
         "repo": "sunpy/sunkit-instruments",
+        "logo": "https://raw.githubusercontent.com/sunpy/sunpy.org/main/_static/img/sunpy_icon.svg",
         "active_branches": ["main"],
         "ci": {
             "github": {
@@ -52,6 +54,7 @@
     "sunkit-pyvista": {
         "pypi_name": "sunkit-pyvista",
         "repo": "sunpy/sunkit-pyvista",
+        "logo": "https://raw.githubusercontent.com/sunpy/sunpy.org/main/_static/img/sunpy_icon.svg",
         "active_branches": ["main"],
         "ci": {
             "github": {
@@ -64,6 +67,7 @@
     "sunraster": {
         "pypi_name": "sunraster",
         "repo": "sunpy/sunraster",
+        "logo": "https://raw.githubusercontent.com/sunpy/sunpy.org/main/_static/img/sunpy_icon.svg",
         "active_branches": ["main"],
         "ci": {
             "github": {
@@ -76,6 +80,7 @@
     "pyflct": {
         "pypi_name": "pyflct",
         "repo": "sunpy/pyflct",
+        "logo": "https://raw.githubusercontent.com/sunpy/sunpy.org/main/_static/img/sunpy_icon.svg",
         "active_branches": ["main"],
         "ci": {
             "github": {
@@ -88,6 +93,7 @@
     "sunkit-instruments": {
         "pypi_name": "sunkit-instruments",
         "repo": "sunpy/sunkit-instruments",
+        "logo": "https://raw.githubusercontent.com/sunpy/sunpy.org/main/_static/img/sunpy_icon.svg",
         "active_branches": ["main"],
         "ci": {
             "github": {
@@ -100,6 +106,7 @@
     "drms": {
         "pypi_name": "drms",
         "repo": "sunpy/drms",
+        "logo": "https://raw.githubusercontent.com/sunpy/sunpy.org/main/_static/img/sunpy_icon.svg",
         "active_branches": ["main"],
         "ci": {
             "github": {
@@ -112,6 +119,7 @@
     "radiospectra": {
         "pypi_name": "radiospectra",
         "repo": "sunpy/radiospectra",
+        "logo": "https://raw.githubusercontent.com/sunpy/sunpy.org/main/_static/img/sunpy_icon.svg",
         "active_branches": ["main"],
         "ci": {
             "github": {
@@ -124,6 +132,7 @@
     "sunkit-spex": {
         "pypi_name": "sunpy",
         "repo": "sunpy/sunkit-spex",
+        "logo": "https://raw.githubusercontent.com/sunpy/sunpy.org/main/_static/img/sunpy_icon.svg",
         "active_branches": ["main"],
         "ci": {
             "github": {
@@ -136,6 +145,7 @@
     "sunpy-soar": {
         "pypi_name": "sunpy-soar",
         "repo": "sunpy/sunpy-soar",
+        "logo": "https://raw.githubusercontent.com/sunpy/sunpy.org/main/_static/img/sunpy_icon.svg",
         "active_branches": ["main"],
         "ci": {
             "github": {
@@ -148,6 +158,7 @@
     "mpl-animators": {
         "pypi_name": "mpl-animators",
         "repo": "sunpy/mpl-animators",
+        "logo": "https://raw.githubusercontent.com/sunpy/sunpy.org/main/_static/img/sunpy_icon.svg",
         "active_branches": ["main"],
         "ci": {
             "github": {
@@ -160,6 +171,7 @@
     "sunkit-dem": {
         "pypi_name": "sunkit-dem",
         "repo": "sunpy/sunkit-dem",
+        "logo": "https://raw.githubusercontent.com/sunpy/sunpy.org/main/_static/img/sunpy_icon.svg",
         "active_branches": ["main"],
         "ci": {
             "github": {
@@ -172,6 +184,7 @@
     "streamtracer": {
         "pypi_name": "streamtracer",
         "repo": "sunpy/streamtracer",
+        "logo": "https://raw.githubusercontent.com/sunpy/sunpy.org/main/_static/img/sunpy_icon.svg",
         "active_branches": ["main"],
         "ci": {
             "github": {
@@ -184,6 +197,7 @@
     "sunkit-magex": {
         "pypi_name": "sunkit-magex",
         "repo": "sunpy/sunkit-magex",
+        "logo": "https://raw.githubusercontent.com/sunpy/sunpy.org/main/_static/img/sunpy_icon.svg",
         "active_branches": ["main"],
         "ci": {
             "github": {
@@ -196,6 +210,7 @@
     "ablog": {
         "pypi_name": "ablog",
         "repo": "sunpy/ablog",
+        "logo": "https://raw.githubusercontent.com/sunpy/sunpy.org/main/_static/img/sunpy_icon.svg",
         "active_branches": ["main"],
         "ci": {
             "github": {
