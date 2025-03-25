@@ -7,20 +7,19 @@ from .base import Package, get_pypi_version_time, Build, Branch, Card
 from .providers import supported_providers
 
 
-async def get_latest_builds(session, active_branches, ci_info):
+async def get_latest_builds(session, package):
     """
     Get all the latest builds for all active_branches for each service in ci_info.
     """
     branches = {}
-    for branch in active_branches:
-        branches[branch] = await get_latest_build_for_branch(session, branch, ci_info)
+    for branch in package.active_branches:
+        branches[branch] = await get_latest_build_for_branch(session, branch, package)
     return branches
 
 
-# TODO: break out this ci_info thing whatever it is so we can call for other API endpoints
-async def get_latest_build_for_branch(session, branch, ci_info):
+async def get_latest_build_for_branch(session, branch, package):
         builds = []
-        for ci_name, config in ci_info.items():
+        for ci_name, config in package._ci_config.items():
             provider = supported_providers[ci_name](session)
             config.update({"branch": branch})
             last_build = await provider.get_last_build(**config)
@@ -74,15 +73,6 @@ async def build_packages(session, config) -> List[Package]:
     return packages
 
 
-async def get_builds_for_package(session, package: Package) -> List[Build]:
-    """
-    Get latest builds for given package.
-    """
-    return await get_latest_builds(session,
-                                   package.active_branches,
-                                   package._ci_config)
-
-
 async def build_cards(session, packages: List[Package]) -> List[Card]:
     """
     Get all cards for all packages in the config.
@@ -92,7 +82,7 @@ async def build_cards(session, packages: List[Package]) -> List[Card]:
         cards.append(
             Card(
                 package,
-                await get_builds_for_package(session, package)
+                await get_latest_builds(session, package)
                 )
             )
     return cards
