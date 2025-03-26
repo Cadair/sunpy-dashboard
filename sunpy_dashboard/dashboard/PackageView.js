@@ -35,7 +35,7 @@ export default {
     },
     template: `
         <div @click="toggleJob(name, branch)">
-            <p class="subtitle mb-0 has-text-weight-bold has-text-black-ter box" :class="statusBackground(build.status)">{{branch}}</p>
+            <p class="branch-box subtitle mb-0 has-text-weight-bold has-text-black-ter box" :class="statusBackground(build.status)">{{branch}}</p>
             <div style="display: none;" :id="buildId">
                 <div class="mt-2" :title="build.time" v-for="build in build.builds">
                     <p class="has-text-weight-bold">{{build.service_name}}</p>
