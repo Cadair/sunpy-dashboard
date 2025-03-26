@@ -28,13 +28,9 @@ export default {
                         <p :title="package.last_release" class="subtitle no-padding">{{package.version}}</p>
                     </div>
                 </div>
-                <PackageView v-for="(build, branch) in package.active_branches"
-                             class="box"
-                             :class="statusBackground(build.status)"
+                <PackageView v-for="branch in package.active_branches"
                              :name="package.name"
-                             :branch="branch"
-                             :build="build"
-                             @click="toggleJob(package.name, branch)"/>
+                             :branch="branch"/>
             </div>
         </div>
     `

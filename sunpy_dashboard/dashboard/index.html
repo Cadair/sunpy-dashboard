@@ -58,10 +58,6 @@
              });
          },
          methods: {
-             toggleJob(package_, branch) {
-                 let jobEl = document.getElementById(`${package_}${branch}`)
-                 jobEl.style.display = jobEl.style.display == "none" ? "block" : "none";
-             },
              statusText(status) {
                  return {
                      'has-text-success': status == 'succeeded',
