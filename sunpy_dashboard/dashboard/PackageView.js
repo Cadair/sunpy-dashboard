@@ -17,7 +17,7 @@ export default {
         var self = this;
         $.getJSON(`/api/latest_build/${self.name}/${self.branch}`, function(data) {
             self.build = data;
-            console.log(self.build.status);
+            // console.log(`Completed data fetch for ${self.name}/${self.branch}`);
         });
     },
     methods: {
