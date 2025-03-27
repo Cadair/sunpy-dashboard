@@ -7,85 +7,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>SunPy Coordinated Package Dashboard</title>
     <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css" />
-    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <link rel="stylesheet" href="cards.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@3"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   </head>
 
   <body>
-
-    <section class="hero is-primary is-bold">
-      <div class="hero-body">
-        <div class="container">
-          <h1 class="title">
-            SunPy Coordinated Package Dashboard
-          </h1>
-        </div>
-      </div>
-    </section>
-    <div class="container">
-      <div class="section">
-
-        <div id="app" class="row columns is-multiline">
-          <div v-for="card in cardData" key="card.id" class="column is-4">
-            <div class="card large">
-              <div class="card-content">
-                <div class="media">
-                  <div class="media-left" v-if="card.package.logo">
-                    <figure class="image is-48x48">
-                      <img :src="card.package.logo" alt="Image">
-                    </figure>
+      <div id="app">
+          <section class="hero is-primary is-bold">
+              <div class="hero-body">
+                  <div class="container">
+                      <h1 class="title">
+                          SunPy Coordinated Package Dashboard
+                      </h1>
                   </div>
-                  <div class="media-content">
-                    <p class="title no-padding"><a class="has-text-grey-darker" :href="card.package.repourl">{{card.package.name}}</a></p>
-                    <p :title="card.package.last_release" class="subtitle no-padding">{{card.package.version}}</p>
-                  </div>
-                </div>
-                <div v-for="(build, branch) in card.branches" class="box" :class="statusBackground(build.status)" @click="toggleJob(card.package.name, branch)">
-                  <p class="subtitle mb-0 has-text-weight-bold has-text-black-ter">{{branch}}</p>
-                  <content style="display: none;" :id=`${card.package.name}${branch}`>
-                    <div class="mt-2" :title="build.time" v-for="build in build.builds">
-                      <p class="has-text-weight-bold">{{build.service_name}}</p>
-                      <ul class="pl-5 has-text-weight-bold has-text-black-ter" style="list-style-type: circle;">
-                        <li :class="statusBackground(job.status)" v-for="job in build.jobs">
-                          <a :href="build.url">{{job.name}}</a>
-                        </li>
-                      </ul>
-                    </div>
-                  </content>
-                </div>
               </div>
-            </div>
+          </section>
+          <div class="container">
+              <div class="section">
+                  <!-- <Page-Loading-Indicator v-if="Object.values(packagesLoaded).some(p => !p)"></Page-Loading-Indicator> -->
+                  <div class="row columns is-multiline">
+                      <div v-for="package in packageInfo" key="package.id" class="column is-4">
+                          <Card :package="package"/>
+                      </div>
+                  </div>
+              </div>
           </div>
-        </div>
       </div>
-    </div>
+      <!-- Using Vue to populate cards to reduce redundant code -->
+      <script type="module">
+       import Card from './Card.js'
+       import PageLoadingIndicator from './PageLoadingIndicator.js'
 
-    <!-- Using Vue to populate cards to reduce redundant code -->
-    <script>
+       const { createApp, ref } = Vue
 
-     var app = new Vue({
-         el: '#app',
-         data: {
-             cardData: [],
-         },
-         mounted() {
-             var self = this
-             $.getJSON("/api/dashboard", function(data) {
-                 self.cardData = data;
+       var app = createApp({
+           el: '#app',
+           data() {
+               return {
+                   packageInfo: [],
+                   packagesLoaded: ref([]),
+               }
+           },
+           components: {
+               Card,
+               PageLoadingIndicator,
+           },
+           mounted() {
+               var self = this
+             $.getJSON("/api/packages", function(data) {
+                 self.packageInfo = data;
+                 /* self.packagesAreLoading = Array(data.map(p => p.active_branches.length).reduce((sum, a) => sum+a, 0)); */
+                 self.packagesLoaded = {}
+                 data.map(p => p.active_branches.map(branch => self.packagesLoaded[`${p.name}${branch}`] = false));
              });
-         },
+           },
          methods: {
-             toggleJob(package, branch) {
-                 let jobEl = document.getElementById(`${package}${branch}`)
-                 jobEl.style.display = jobEl.style.display == "none" ? "block" : "none";
-             },
-             statusBackground(status) {
-                 return {
-                     'has-background-success': status == 'succeeded',
-                     'has-background-warning': status == 'out-of-date',
-                     'has-background-danger': status == 'failed',
-                 }
-             },
              statusText(status) {
                  return {
                      'has-text-success': status == 'succeeded',
@@ -101,6 +78,7 @@
              }
          }
      })
+     app.mount("#app")
     </script>
   </body>
 
