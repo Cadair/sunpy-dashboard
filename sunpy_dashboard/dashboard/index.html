@@ -25,7 +25,7 @@
           </section>
           <div class="container">
               <div class="section">
-                  <Page-Loading-Indicator v-if="packagesLoaded.some()"></Page-Loading-Indicator>
+                  <!-- <Page-Loading-Indicator v-if="Object.values(packagesLoaded).some(p => !p)"></Page-Loading-Indicator> -->
                   <div class="row columns is-multiline">
                       <div v-for="package in packageInfo" key="package.id" class="column is-4">
                           <Card :package="package"/>
@@ -60,11 +60,7 @@
                  /* self.packagesAreLoading = Array(data.map(p => p.active_branches.length).reduce((sum, a) => sum+a, 0)); */
                  self.packagesLoaded = {}
                  data.map(p => p.active_branches.map(branch => self.packagesLoaded[`${p.name}${branch}`] = false));
-                 console.log(self.packagesLoaded);
              });
-           },
-           updated() {
-               console.log(this.packagesLoaded);
            },
          methods: {
              statusText(status) {
