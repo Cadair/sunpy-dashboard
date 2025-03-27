@@ -17,10 +17,13 @@ export default {
         var self = this;
         $.getJSON(`/api/latest_build/${self.name}/${self.branch}`, function(data) {
             self.build = data;
-            // console.log(`Completed data fetch for ${self.name}/${self.branch}`);
+            self.loaded();
         });
     },
     methods: {
+        loaded() {
+            this.$emit('package-load-finished', this.buildId);
+        },
         statusBackground(status) {
             return {
                 'has-background-success': status == 'succeeded',
@@ -33,6 +36,7 @@ export default {
             jobEl.style.display = jobEl.style.display == "none" ? "block" : "none";
         },
     },
+    emits: ['package-load-finished'],
     template: `
         <div @click="toggleJob(name, branch)">
             <p class="branch-box subtitle mb-0 has-text-weight-bold has-text-black-ter box" :class="statusBackground(build.status)">{{branch}}</p>
